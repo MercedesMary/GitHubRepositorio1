@@ -1,1 +1,3 @@
 se agregaron cambio
+git show agregado
+“La fecha de ahora es 2023 (Abril)”
