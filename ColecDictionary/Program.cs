@@ -1,35 +1,42 @@
-//programa que permita visualizar los departamentos de nicragua con
+﻿//programa que permita visualizar los departamentos de nicragua con
 //su cantidad poblacional
 //Encuentre:mayor, menor, suma y ordene los datos 
-using System.Collections;
-String[] Departamento = { "Boaco", "Carazo", "Chinandega", "Chontales", "Costa Caribe Norte", "Costa Caribe Sur", "Estelí", "Granada", "Jinotega", "León", "Madriz", "Managua", "Masaya", "Matagalpa", "Nueva Segovia", "Río San Juan", "Rivas" };
-int[] Poblacion = { 185013, 197139, 439906, 190863, 530586, 414543, 229866, 214317, 475630, 421050, 174744, 1546939, 391903, 593503, 271581, 135446, 182645 };
-Dictionary<string, int> diccionario = Departamento
-          .Zip(Poblacion, (k, v) => new { Clave = k, Valor = v })
-          .ToDictionary(x => x.Clave, x => x.Valor);
-
-int maxDep = Poblacion.Max();
-int minDep = Poblacion.Min();
-string maxDepkey = "", minDepkey = "";
-//Encontrar el nombre del departamento que tiene la mayor y menor poblacion
-for (var i = 0; i < Poblacion.Length; i++)
+using Departamentos;
+//Lista de departamentos
+List<depto>lstDeptos = new List<depto>()
 {
-    if (Poblacion[i] == maxDep)
-        maxDepkey = Departamento[i];
-    if (Poblacion[i] == minDep)
-        minDepkey = Departamento[i];
-}
-//mostrar en el diccionarios sin ordenar
-Console.WriteLine($"datosDesordenados")
-foreach (var item in diccionario)
-Console.WriteLine($"{item.key,-20}==>{item.value,10:No}");
-Console.WriteLine();
-// mostrando resultados 
-for (var i = 0; i < Poblacion.Length; i++)
-    Console.WriteLine($"{Departamento[i],20} ==> {Poblacion[i],10:N0}");
-//Sumar todas la poblaciones con SUM de LINQ
-Console.WriteLine($"Población General:{Poblacion.Sum():N0}");
-Console.WriteLine($"Departamento con mayor Población:{maxDepkey}");
-Console.WriteLine($"Departamento con menor Población:{minDepkey}");
-//Poblacion promedio
-Console.WriteLine($"poblcion promedio:{diccionario.Values.Average():N2}");
+  new depto("Boaco",185013),
+  new depto("Carazo",197139).
+  new depto("Chinandega",439906),
+  new depto("Chontales",190863),
+  new depto("Costa caribe Norte",530586),
+  new depto("Costa caribe Sur",414543),
+  new depto("Esteli", 229866),
+  new depto("Granada",214317),
+  new depto("Jinotepe",475630),
+  new depto("Leon", 421050),
+  new depto("Madriz",174744),
+  new depto("Managua",1546939),
+  new depto("Masaya",391903),
+  new depto("Matagalpa",593503),
+  new depto("Nueva Segovi",271581),
+  new depto("Rio San Juan",135446),
+  new depto("Rivas",182645)
+};
+//Encontrar el mayor y el menor (poblacion)
+ depto minDepto =lstDeptos.OrderBy(d=>.population).First();
+ depto maxDepto =lstDeptos.OrderBy(d=>.population).Last();
+ //Ordenando los deprtamentos 
+ var DeptOrdenado =lstDeptos.OrderBy(d=>d.population);
+ //Mostrar departamentos ordenados
+ foreach (var item in DeptOrdenado)
+   Console.WriteLine($"{item.Name,-20}==>{item.population,10:No}");
+//Mostrando el mayor y menor
+Console.WriteLine($"Dpto con menor poblacion:{minDepto.Name}");
+Console.WriteLine($"Dpto con mayor poblacion:{maxDepto.Name}");
+//Sumr tods la poblacion con su SUM de LINQ
+int total = lstDeptos.Select(d=>d.population).Sum();
+Console.WriteLine($"Poblcion General:{total:No}");
+ 
+
+
