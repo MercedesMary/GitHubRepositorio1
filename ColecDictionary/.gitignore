@@ -1,7 +1,9 @@
 # Archivo de proyecto de C#
+
 *.carpetas de construccion de proyecto de C#
 ColectDictionary/bin/Debug/**/*.*
 ColectDictionary/obj/Debug/**/*.*
 ColectDictionary/obj/Debug/**/*.*.*
+
 #archivos de metadata de unity
 *.meta
